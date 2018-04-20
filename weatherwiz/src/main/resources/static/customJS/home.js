@@ -5,12 +5,27 @@ $(document).ready(function() {
 	$('#lnkSavedCities').removeClass("current-menu-item");
 	$('#lnkGreatEscapes').removeClass("current-menu-item");
 	setTodayDateTime();
-	var place = {
-			"placeName": "College Station",
-			"lattitude": "30.615011",
-			"longitude": "-96.342476"
+	//if (localStorage.getItem("selectedCity") != null) {
+	if ($.session.get("selectedCity") != null) {
+		var cityName = $.session.get("selectedCity");
+		var coordinates = $.session.get("selectedCityCoordinates");
+		var pts = coordinates.split(',');
+		var place = {
+				"placeName": cityName,
+				"lattitude": pts[0],
+				"longitude": pts[1]
+		}
+		loadCurrentWeatherData(place);
 	}
-	loadCurrentWeatherData(place);
+	else{
+		var place = {
+				"placeName": "College Station",
+				"lattitude": "30.615011",
+				"longitude": "-96.342476"
+		}
+		loadCurrentWeatherData(place);
+		
+	}
 	getAllPlaces();
 });
 

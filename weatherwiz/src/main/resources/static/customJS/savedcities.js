@@ -1,17 +1,19 @@
 $(document)
 		.ready(
 				function() {
+					$.session.remove("selectedCity");
+					$.session.remove("selectedCityCoordinates");
 					$('#lnkSavedCities').addClass("current-menu-item");
 					$('#lnkLogin').removeClass("current-menu-item");
 					$('#lnkGreatEscapes').removeClass("current-menu-item");
 
 					var tableRow = $('#trSavedCities');
-					var htmlString = "<td style='padding:2px' width='16.6%' id='tdCity1'></td>" +
-							"<td style='padding:2px' width='16.6%' id='tdCity2'></td>" +
-							"<td style='padding:2px' width='16.6%' id='tdCity3'></td>" +
-							"<td style='padding:2px' width='16.6%' id='tdCity4'></td>" +
-							"<td style='padding:2px' width='16.6%' id='tdCity5'></td>" +
-							"<td style='padding:2px' width='16.6%' id='tdCity6'></td>";
+					var htmlString = "<td style='padding:2px' width='16.6%' id='tdCity1'></td>"
+							+ "<td style='padding:2px' width='16.6%' id='tdCity2'></td>"
+							+ "<td style='padding:2px' width='16.6%' id='tdCity3'></td>"
+							+ "<td style='padding:2px' width='16.6%' id='tdCity4'></td>"
+							+ "<td style='padding:2px' width='16.6%' id='tdCity5'></td>"
+							+ "<td style='padding:2px' width='16.6%' id='tdCity6'></td>";
 					var row = $(htmlString);
 					tableRow.append(row);
 
@@ -49,33 +51,40 @@ function getSavedCities() {
 function populateCities(result) {
 	var currentCity = {
 		"cityName" : "College Station",
-		"lattitude": "30.615011",
-		"longitude": "-96.342476"
+		"lattitude" : "30.615011",
+		"longitude" : "-96.342476"
 	}
 	populateCityData(currentCity, 1);
 	for (var i = 0; i < result.length; i++) {
-		populateCityData(result[i], i+2);
+		populateCityData(result[i], i + 2);
 	}
 	if (result.length < 5) {
 		populateEmptyCellsForCities(result.length);
 	}
+	var rem = 5 - result.length;
+	$('#lblNoOfCitiesRemaining').text('You can add ' + rem + ' more cities');
 }
 
 function populateCityData(city, index) {
 	var tableCell = $('#tdCity' + index);
 	var htmlString = "";
-	if(index == 1){
-		htmlString = "<table class='table-responsive' style='border-radius: 1em;background-color: #1e202b' width='100%'><tr><td style='padding-top:10px'><h3 class='photo-title' align='center'>"
-			+ city.cityName
-			+ "</h3></td><td style='padding-top:10px' align='right'>&nbsp;</td></tr>";
-	}
-	else{
-		htmlString = "<table class='table-responsive' style='border-radius: 1em;background-color: #1e202b' width='100%'><tr><td style='padding-top:10px'><h3 class='photo-title' align='center'>"
-			+ city.cityName
-			+ "</h3></td><td style='padding-top:10px' align='right'><img src='/img/delete.png' width='32px'></td></tr>";
-	}
-	
 	var coordinates = city.lattitude + "," + city.longitude;
+	
+	var cityDetails = city.cityName + "#" + coordinates;
+	if (index == 1) {
+		htmlString = "<table title='"
+				+ cityDetails
+				+ "' class='table-responsive' onclick='citySelected(this)' style='border-radius: 1em;background-color: #1e202b' width='100%'><tr><td style='padding-top:10px'><h3 class='photo-title' align='center'>"
+				+ city.cityName
+				+ "</h3></td><td style='padding-top:10px' align='right'>&nbsp;</td></tr>";
+	} else {
+		htmlString = "<table title='"
+				+ cityDetails
+				+ "' class='table-responsive' onclick='citySelected(this)' style='border-radius: 1em;background-color: #1e202b' width='100%'><tr><td style='padding-top:10px'><h3 class='photo-title' align='center'>"
+				+ city.cityName
+				+ "</h3></td><td style='padding-top:10px' align='right'><img src='/img/delete.png' width='32px'></td></tr>";
+	}
+
 	$
 			.ajax({
 				url : "https://api.darksky.net/forecast/8033a3de715efec9a6789903a1466bf9/"
@@ -92,12 +101,27 @@ function populateCityData(city, index) {
 					tableCell.append(cell);
 					var firstTableCell = $('#tdCity1');
 					var addTableCell = $('#tdCity4');
-					$(addTableCell).attr("height", $(firstTableCell).attr("height"));
+					$(addTableCell).attr("height",
+							$(firstTableCell).attr("height"));
 				},
 				error : function(e) {
 
 				},
 			});
+}
+
+function citySelected(tbl) {
+	var citycoordinates = $(tbl).attr('title');
+	var temp = citycoordinates.split("#");
+	var cityName = temp[0];
+	var coordinates = temp[1];
+	$.session.set("selectedCity", temp[0]);
+	$.session.set("selectedCityCoordinates", temp[1]);
+	//localStorage.setItem("selectedCity", temp[0]);
+	//localStorage.setItem("selectedCityCoordinates", temp[1]);
+	setTimeout(function() {
+		window.location.href = "/home";
+	}, 500);
 }
 
 function populateEmptyCellsForCities(noOfCities) {
@@ -106,7 +130,6 @@ function populateEmptyCellsForCities(noOfCities) {
 	var cell = $("<table class='table-responsive' style='border-radius: 1em;background-color: #1e202b' width='100%'>"
 			+ "<tr><td style='padding-top:10px' align='center'><img onclick=openAddCityPopup() class='img-responsive' src='/img/plus.png' width='48px'></td></tr></table>");
 	tableCell.append(cell);
-	
 
 	for (var i = 0; i < 5 - noOfCities - 1; i++) {
 		var htmlString = " ";
@@ -119,10 +142,10 @@ $('#btnModalCancel').click(function() {
 	$('#weatherModal').modal('hide');
 });
 
-function openAddCityPopup(){
+function openAddCityPopup() {
 	$('#weatherModal').removeAttr('style');
 	$('#weatherModal').modal('show');
 	$(".modal .modal-title").html('Add To Favorite');
-	//$("#actionBtnModalBody").html('');
-	//$('#btnModalDelete').attr('value', imageId);
+	// $("#actionBtnModalBody").html('');
+	// $('#btnModalDelete').attr('value', imageId);
 }

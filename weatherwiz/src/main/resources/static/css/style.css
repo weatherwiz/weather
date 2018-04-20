@@ -1616,6 +1616,13 @@ form textarea {
     border-color: #009ad8; }
 .contact-form textarea {
   min-height: 150px; }
+.contact-form select {
+  width: 90%;
+  padding: 15px;
+  margin-bottom: 10px;
+  color: white;
+  border: 2px solid #393c48;
+  background: transparent;  }
 .contact-form .text-right {
   text-align: right; }
 

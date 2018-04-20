@@ -19,38 +19,21 @@ function setHeaderFile() {
 	});
 }
 
-function setAdminHeader() {
-	$('#divGuestHeader').attr('style', 'display:none');
-	$('#divUserHeader').attr('style', 'display:none');
-	$('#divAdminHeader').removeAttr('style');
-}
-
 function setUserHeader() {
-	var mobileMenuDisplayed = $('#btnMenu').hasClass("style");
-	if(mobileMenuDisplayed){
-		$('#ulGuestMenu').attr('style', 'display:none');
-		$('#ulGuestMenu').hide();
-		$('#ulUserMenu').removeAttr('style');
-		$('#ulUserMenu').show();
-	}
-	else{
-		$('#divGuestHeader').attr('style', 'display:none');
-		$('#divUserHeader').removeAttr('style');
-	}
+	$('#divGuestHeader').attr('style', 'display:none');
+	$('#divUserHeader').removeAttr('style');
+	$('#ulGuestMenu #lnkGuestSavedCities').remove();
+	$('#ulGuestMenu #lnkGuestGreatEscapes').remove();
+	$('#ulGuestMenu #lnkGuestLogin').remove();
 }
 
 function setGuestHeader() {
-	var mobileMenuDisplayed = $('#btnMenu').hasClass("style");
-	if(mobileMenuDisplayed){
-		$('#ulUserMenu').attr('style', 'display:none');
-		$('#ulUserMenu').hide();
-		$('#ulGuestMenu').removeAttr('style');
-		$('#ulGuestMenu').show();
-	}
-	else{
-		$('#divUserHeader').attr('style', 'display:none');
-		$('#divGuestHeader').removeAttr('style');
-	}
+	$('#divUserHeader').attr('style', 'display:none');
+	$('#divGuestHeader').removeAttr('style');
+	$('#ulUserMenu #lnkUserSavedCities').remove();
+	$('#ulUserMenu #lnkUserGreatEscapes').remove();
+	$('#ulUserMenu #lnkUserMyAccount').remove();
+	$('#ulUserMenu #lnkUserLogin').remove();
 }
 
 function validateEmailID(emailID) {
@@ -64,33 +47,33 @@ function validateEmailID(emailID) {
 
 function validateDate(txtDate) {
 	var currVal = txtDate;
-	  if(currVal == '')
-	    return false;
-	  
-	  var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/; 
-	  var dtArray = currVal.match(rxDatePattern); // is format OK?
+	if (currVal == '')
+		return false;
 
-	  if (dtArray == null)
-	     return false;
-	 
-	  //Checks for mm/dd/yyyy format.
-	  var dtMonth = dtArray[1];
-	  var dtDay= dtArray[3];
-	  var dtYear = dtArray[5];
+	var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+	var dtArray = currVal.match(rxDatePattern); // is format OK?
 
-	  if (dtMonth < 1 || dtMonth > 12)
-	      return false;
-	  else if (dtDay < 1 || dtDay> 31)
-	      return false;
-	  else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31)
-	      return false;
-	  else if (dtMonth == 2)
-	  {
-	     var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
-	     if (dtDay> 29 || (dtDay ==29 && !isleap))
-	          return false;
-	  }
-	  return true;
+	if (dtArray == null)
+		return false;
+
+	// Checks for mm/dd/yyyy format.
+	var dtMonth = dtArray[1];
+	var dtDay = dtArray[3];
+	var dtYear = dtArray[5];
+
+	if (dtMonth < 1 || dtMonth > 12)
+		return false;
+	else if (dtDay < 1 || dtDay > 31)
+		return false;
+	else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11)
+			&& dtDay == 31)
+		return false;
+	else if (dtMonth == 2) {
+		var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+		if (dtDay > 29 || (dtDay == 29 && !isleap))
+			return false;
+	}
+	return true;
 }
 
 function validatePinCode(pinCode) {
@@ -132,46 +115,42 @@ function validateCreditDebitNumber(cardNumber) {
 	}
 }
 
-function convertTemperature(tempValue, targetUnit){
-	if(targetUnit == 'C'){
+function convertTemperature(tempValue, targetUnit) {
+	if (targetUnit == 'C') {
 		var temp = tempValue - 32;
-		return temp/1.8;
-	}
-	else{
+		return temp / 1.8;
+	} else {
 		temp = tempValue * 1.8;
-		return temp+32;
+		return temp + 32;
 	}
 }
 
 function emojiClicked(imgId) {
 	if (imgId == 'imgAngry' || imgId == 'imgSad') {
-		toastr.error(
-				'Feedback is submitted. We are sorry that we couldn\'t process your requests. We would like to serve your better.', '',
-				{
-					closeButton : true,
-					progressBar : true,
-					positionClass : "toast-top-center",
-					timeOut : "5000",
-				});
-	}
-	else if (imgId == 'imgNeutral') {
+		toastr
+				.error(
+						'Feedback is submitted. We are sorry that we couldn\'t process your requests. We would like to serve your better.',
+						'', {
+							closeButton : true,
+							progressBar : true,
+							positionClass : "toast-top-center",
+							timeOut : "5000",
+						});
+	} else if (imgId == 'imgNeutral') {
 		toastr.success(
-				'Feedback is submitted. We would like to serve your better.', '',
-				{
+				'Feedback is submitted. We would like to serve your better.',
+				'', {
 					closeButton : true,
 					progressBar : true,
 					positionClass : "toast-top-center",
 					timeOut : "5000",
 				});
-	}
-	else if (imgId == 'imgSatisfied' || imgId == 'imgHappy') {
-		toastr.success(
-				'Great! Your satisfaction is our success!!!', '',
-				{
-					closeButton : true,
-					progressBar : true,
-					positionClass : "toast-top-center",
-					timeOut : "5000",
-				});
+	} else if (imgId == 'imgSatisfied' || imgId == 'imgHappy') {
+		toastr.success('Great! Your satisfaction is our success!!!', '', {
+			closeButton : true,
+			progressBar : true,
+			positionClass : "toast-top-center",
+			timeOut : "5000",
+		});
 	}
 }

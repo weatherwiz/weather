@@ -4,6 +4,8 @@ $(document).ready(function() {
 	$('#lnkLogin').addClass("current-menu-item");
 	$('#lnkSavedCities').removeClass("current-menu-item");
 	$('#lnkGreatEscapes').removeClass("current-menu-item");
+	$.session.remove("selectedCity");
+	$.session.remove("selectedCityCoordinates");
 });
 
 $('#btnLogin').click(function() {

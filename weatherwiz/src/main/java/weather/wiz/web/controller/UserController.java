@@ -65,6 +65,11 @@ public class UserController extends BaseController {
 	public String greatEscapes() {
 		return "/user/greatescapes";
 	}
+	
+	@RequestMapping("/user/spotreview")
+	public String spotReview() {
+		return "/user/spotreview";
+	}
 
 	/**
 	 * Redirect to logout.
