@@ -10,13 +10,17 @@ import org.springframework.stereotype.Service;
 
 import weather.wiz.constant.WeatherWizConstant;
 import weather.wiz.entity.ApplicationUser;
+import weather.wiz.entity.Place;
 import weather.wiz.entity.SavedCity;
+import weather.wiz.repository.PlaceRepository;
 import weather.wiz.repository.SavedCityRepository;
 
 @Service
 public class SavedCityService {
 	@Autowired
 	private SavedCityRepository repository;
+	@Autowired
+	private PlaceRepository placeRepo;
 	
 	public SavedCity saveCity(SavedCity city, HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -38,5 +42,9 @@ public class SavedCityService {
 			return repository.findByUserId(currentUser.getUserId());
 		}
 		return null;
+	}
+	
+	public Place getPlaceDetails(String placeName){
+		return placeRepo.findFirstByPlaceNameOrderByPlaceName(placeName);
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import weather.wiz.entity.Place;
 import weather.wiz.entity.SavedCity;
 import weather.wiz.service.SavedCityService;
 
@@ -27,5 +28,11 @@ public class SavedCityController {
 	@RequestMapping(method = RequestMethod.GET, value = "/city")
 	public List<SavedCity> getSavedCities(HttpServletRequest req) {
 		return service.getSavedCities(req);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/city/details")
+	public Place getPlaceDetails(@RequestBody String placeName){
+		Place place = service.getPlaceDetails(placeName);
+		return place;
 	}
 }

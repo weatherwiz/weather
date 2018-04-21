@@ -1,37 +1,41 @@
 $(document)
 		.ready(
 				function() {
-					$.session.remove("selectedCity");
-					$.session.remove("selectedCityCoordinates");
-					$('#lnkSavedCities').addClass("current-menu-item");
-					$('#lnkLogin').removeClass("current-menu-item");
-					$('#lnkGreatEscapes').removeClass("current-menu-item");
-
-					var tableRow = $('#trSavedCities');
-					var htmlString = "<td style='padding:2px' width='16.6%' id='tdCity1'></td>"
-							+ "<td style='padding:2px' width='16.6%' id='tdCity2'></td>"
-							+ "<td style='padding:2px' width='16.6%' id='tdCity3'></td>"
-							+ "<td style='padding:2px' width='16.6%' id='tdCity4'></td>"
-							+ "<td style='padding:2px' width='16.6%' id='tdCity5'></td>"
-							+ "<td style='padding:2px' width='16.6%' id='tdCity6'></td>";
-					var row = $(htmlString);
-					tableRow.append(row);
-
-					$.ajax({
-						url : "/currentuser",
-						type : "GET",
-						contentType : "application/json; charset=utf-8",
-						dataType : "json",
-						success : function(result) {
-							getSavedCities();
-						},
-						error : function(e) {
-							setTimeout(function() {
-								window.location.href = "/login";
-							}, 500);
-						},
-					});
+					populateCitiesData();
 				});
+
+function populateCitiesData(){
+	$.session.remove("selectedCity");
+	$.session.remove("selectedCityCoordinates");
+	$('#lnkSavedCities').addClass("current-menu-item");
+	$('#lnkLogin').removeClass("current-menu-item");
+	$('#lnkGreatEscapes').removeClass("current-menu-item");
+
+	var tableRow1 = $('#trSavedCities');
+	var htmlString1 = "<td style='padding:2px' width='16.6%' id='tdCity1'></td>"
+			+ "<td style='padding:2px' width='16.6%' id='tdCity2'></td>"
+			+ "<td style='padding:2px' width='16.6%' id='tdCity3'></td>"
+			+ "<td style='padding:2px' width='16.6%' id='tdCity4'></td>"
+			+ "<td style='padding:2px' width='16.6%' id='tdCity5'></td>"
+			+ "<td style='padding:2px' width='16.6%' id='tdCity6'></td>";
+	var row1 = $(htmlString1);
+	tableRow1.append(row1);
+
+	$.ajax({
+		url : "/currentuser",
+		type : "GET",
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(result) {
+			getSavedCities();
+		},
+		error : function(e) {
+			setTimeout(function() {
+				window.location.href = "/login";
+			}, 500);
+		},
+	});
+}
 
 function getSavedCities() {
 	$.ajax({
@@ -69,7 +73,7 @@ function populateCityData(city, index) {
 	var tableCell = $('#tdCity' + index);
 	var htmlString = "";
 	var coordinates = city.lattitude + "," + city.longitude;
-	
+
 	var cityDetails = city.cityName + "#" + coordinates;
 	if (index == 1) {
 		htmlString = "<table title='"
@@ -117,8 +121,8 @@ function citySelected(tbl) {
 	var coordinates = temp[1];
 	$.session.set("selectedCity", temp[0]);
 	$.session.set("selectedCityCoordinates", temp[1]);
-	//localStorage.setItem("selectedCity", temp[0]);
-	//localStorage.setItem("selectedCityCoordinates", temp[1]);
+	// localStorage.setItem("selectedCity", temp[0]);
+	// localStorage.setItem("selectedCityCoordinates", temp[1]);
 	setTimeout(function() {
 		window.location.href = "/home";
 	}, 500);
@@ -141,6 +145,60 @@ function populateEmptyCellsForCities(noOfCities) {
 $('#btnModalCancel').click(function() {
 	$('#weatherModal').modal('hide');
 });
+
+$('#btnModalAddToFavorite').click(function() {
+	$.ajax({
+		url : "/city/details",
+		type : "POST",
+		data : $('#txtLocationToBeSearched').val(),
+		contentType : "application/json; charset=utf-8",
+		success : function(result) {
+			addCityToFavorite(result);
+			$('#txtLocationToBeSearched').text('');
+			$('#weatherModal').modal('hide');
+		},
+		error : function(e) {
+			toastr.error('City is not found', '', {
+				closeButton : true,
+				progressBar : true,
+				positionClass : "toast-top-center",
+				timeOut : "2000",
+			});
+		}
+	});
+});
+
+function addCityToFavorite(place) {
+	var city = {
+			"cityName" : place.placeName,
+			"lattitude" : place.lattitude,
+			"longitude" : place.longitude
+	}
+	$.ajax({
+		url : "/city/save",
+		type : "POST",
+		data : JSON.stringify(city),
+		contentType : "application/json; charset=utf-8",
+		success : function(result) {
+			toastr.success('City is added to your favorites.', '', {
+				closeButton : true,
+				progressBar : true,
+				positionClass : "toast-top-center",
+				timeOut : "5000",
+			});
+			//populateCitiesData();
+			//getSavedCities();
+		},
+		error : function(e) {
+			toastr.error('City is not found', '', {
+				closeButton : true,
+				progressBar : true,
+				positionClass : "toast-top-center",
+				timeOut : "2000",
+			});
+		}
+	});
+}
 
 function openAddCityPopup() {
 	$('#weatherModal').removeAttr('style');

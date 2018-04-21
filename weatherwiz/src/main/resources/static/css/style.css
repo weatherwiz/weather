@@ -1701,3 +1701,7 @@ form textarea {
     align: center;
 	margin-top:1%;
 }
+
+ul.ui-front{
+	z-index:1500;
+}

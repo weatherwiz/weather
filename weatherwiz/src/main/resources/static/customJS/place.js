@@ -14,7 +14,12 @@ function getAllPlaces() {
 	});
 }
 
+function init(searchBox){
+	$(searchBox).attr('zIndex', '1500');
+}
+
 function placeNameTyping(searchBox) {
+	init(searchBox);
 	if (localStorage.getItem("allPlaces") == null) {
 		getAllPlaces();
 	}

@@ -5,26 +5,33 @@ $(document).ready(function() {
 	$('#lnkSavedCities').removeClass("current-menu-item");
 	$('#lnkGreatEscapes').removeClass("current-menu-item");
 	setTodayDateTime();
-	//if (localStorage.getItem("selectedCity") != null) {
+	if (localStorage.getItem("tempUnit") != null) {
+		if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+			$('#btnChangeUnit').val('Change Unit to Celsius');
+		} else {
+			$('#btnChangeUnit').val('Change Unit to Fahrenheit');
+		}
+	} else {
+		localStorage.setItem("tempUnit", 'Fahrenheit');
+	}
 	if ($.session.get("selectedCity") != null) {
 		var cityName = $.session.get("selectedCity");
 		var coordinates = $.session.get("selectedCityCoordinates");
 		var pts = coordinates.split(',');
 		var place = {
-				"placeName": cityName,
-				"lattitude": pts[0],
-				"longitude": pts[1]
+			"placeName" : cityName,
+			"lattitude" : pts[0],
+			"longitude" : pts[1]
 		}
 		loadCurrentWeatherData(place);
-	}
-	else{
+	} else {
 		var place = {
-				"placeName": "College Station",
-				"lattitude": "30.615011",
-				"longitude": "-96.342476"
+			"placeName" : "College Station",
+			"lattitude" : "30.615011",
+			"longitude" : "-96.342476"
 		}
 		loadCurrentWeatherData(place);
-		
+
 	}
 	getAllPlaces();
 });
@@ -76,8 +83,20 @@ function loadCurrentWeatherData(place) {
 					} else {
 						$('#spanLocation').html(result.timezone);
 					}
-					$('#spanTodayTemp').html(
-							result.currently.temperature.toFixed(0) + '<sup>o</sup>F');
+					if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+						$('#spanTodayTemp').html(
+								result.currently.temperature.toFixed(0)
+										+ '<sup>o</sup>F');
+					} else {
+						$('#spanTodayTemp')
+								.html(
+										convertTemperature(
+												result.currently.temperature
+														.toFixed(0), 'C')
+												.toFixed(0)
+												+ '<sup>o</sup>C');
+					}
+
 					setTodayForcastIcon(result.currently.icon);
 					$('#spanDewPoint').html(
 							'<img id="imgDewPoint" src="/img/icon-umberella.png" alt=""  />'
@@ -116,12 +135,21 @@ function getCurrentWeatherData() {
 				success : function(result) {
 					localStorage.setItem("weatherData", JSON.stringify(result));
 					$('#spanLocation').html(result.timezone);
-					$('#spanTodayTemp').html(
-							result.currently.temperature + '<sup>o</sup>F');
+					if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+						$('#spanTodayTemp').html(
+								result.currently.temperature + '<sup>o</sup>F');
+					} else {
+						$('#spanTodayTemp').html(
+								convertTemperature(
+										result.currently.temperature, 'C')
+										+ '<sup>o</sup>C');
+					}
+
 					setTodayForcastIcon(result.currently.icon);
-					$('#spanDewPoint').html(
-							'<img id="imgDewPoint" src="/img/icon-umberella.png" alt="" class="img-responsive" />'
-									+ result.currently.dewPoint + '%');
+					$('#spanDewPoint')
+							.html(
+									'<img id="imgDewPoint" src="/img/icon-umberella.png" alt="" class="img-responsive" />'
+											+ result.currently.dewPoint + '%');
 					$('#spanWindSpeed').html(
 							'<img src="/img/icon-wind.png" alt="" class="img-responsive">'
 									+ result.currently.windSpeed + 'km/h');
@@ -191,27 +219,81 @@ function setHourlyWeatherData(hourlyData) {
 		d.setUTCSeconds(utcSeconds);
 		if (i == 1) {
 			$('#spanTime1').html(getHourForDisplay(d.getHours()));
-			$('#spanTemp1').html(hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+				$('#spanTemp1').html(
+						hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			} else {
+				$('#spanTemp1').html(
+						convertTemperature(
+								hourlyData[i].temperature.toFixed(0), 'C')
+								.toFixed(0)
+								+ '<sup>o</sup>C');
+			}
 			setForcastIcon(hourlyData[i].icon, 'imgForcastIcon1');
 		} else if (i == 2) {
 			$('#spanTime2').html(getHourForDisplay(d.getHours()));
-			$('#spanTemp2').html(hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+				$('#spanTemp2').html(
+						hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			} else {
+				$('#spanTemp2').html(
+						convertTemperature(
+								hourlyData[i].temperature.toFixed(0), 'C')
+								.toFixed(0)
+								+ '<sup>o</sup>C');
+			}
 			setForcastIcon(hourlyData[i].icon, 'imgForcastIcon2');
 		} else if (i == 3) {
 			$('#spanTime3').html(getHourForDisplay(d.getHours()));
-			$('#spanTemp3').html(hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+				$('#spanTemp3').html(
+						hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			} else {
+				$('#spanTemp3').html(
+						convertTemperature(
+								hourlyData[i].temperature.toFixed(0), 'C')
+								.toFixed(0)
+								+ '<sup>o</sup>C');
+			}
 			setForcastIcon(hourlyData[i].icon, 'imgForcastIcon3');
 		} else if (i == 4) {
 			$('#spanTime4').html(getHourForDisplay(d.getHours()));
-			$('#spanTemp4').html(hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+				$('#spanTemp4').html(
+						hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			} else {
+				$('#spanTemp4').html(
+						convertTemperature(
+								hourlyData[i].temperature.toFixed(0), 'C')
+								.toFixed(0)
+								+ '<sup>o</sup>C');
+			}
 			setForcastIcon(hourlyData[i].icon, 'imgForcastIcon4');
 		} else if (i == 5) {
 			$('#spanTime5').html(getHourForDisplay(d.getHours()));
-			$('#spanTemp5').html(hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+				$('#spanTemp5').html(
+						hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			} else {
+				$('#spanTemp5').html(
+						convertTemperature(
+								hourlyData[i].temperature.toFixed(0), 'C')
+								.toFixed(0)
+								+ '<sup>o</sup>C');
+			}
 			setForcastIcon(hourlyData[i].icon, 'imgForcastIcon5');
 		} else if (i == 6) {
 			$('#spanTime6').html(getHourForDisplay(d.getHours()));
-			$('#spanTemp6').html(hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+				$('#spanTemp6').html(
+						hourlyData[i].temperature.toFixed(0) + '<sup>o</sup>F');
+			} else {
+				$('#spanTemp6').html(
+						convertTemperature(
+								hourlyData[i].temperature.toFixed(0), 'C')
+								.toFixed(0)
+								+ '<sup>o</sup>C');
+			}
 			setForcastIcon(hourlyData[i].icon, 'imgForcastIcon6');
 		}
 	}
@@ -291,31 +373,48 @@ function createGraphForDay(data, tableId) {
 	var tableHead = $('');
 	table.html(tableHead);
 	var htmlString = "<tr>";
-
-	for (var i = 0; i < data.temperatureMin - 2; i++) {
-		htmlString = htmlString + "<td width='1%'>&nbsp;</td>";
-	}
-	for (var i = data.temperatureMin - 2; i < data.temperatureMin - 1; i++) {
-		htmlString = htmlString + "<td width='1%'>" + data.temperatureMin.toFixed(0)
-				+ "<sup>o</sup>F</td>";
-	}
-	for (var i = data.temperatureMin - 1; i < data.temperatureMin; i++) {
-		htmlString = htmlString + "<td width='1%'>&nbsp;</td>";
+	var minTemp = data.temperatureMin;
+	var maxTemp = data.temperatureMax;
+	if (localStorage.getItem("tempUnit") == 'Celsius') {
+		minTemp = convertTemperature(data.temperatureMin, 'C');
+		maxTemp = convertTemperature(data.temperatureMax, 'C');
 	}
 
-	for (var i = data.temperatureMin; i < data.temperatureMax; i++) {
+	for (var i = 0; i < minTemp - 2; i++) {
+		htmlString = htmlString + "<td width='1%'>&nbsp;</td>";
+	}
+	for (var i = minTemp - 2; i < minTemp - 1; i++) {
+		if (localStorage.getItem("tempUnit") == 'Celsius') {
+			htmlString = htmlString + "<td width='1%'>" + minTemp.toFixed(0)
+					+ "<sup>o</sup>C</td>";
+		} else {
+			htmlString = htmlString + "<td width='1%'>" + minTemp.toFixed(0)
+					+ "<sup>o</sup>F</td>";
+		}
+	}
+	for (var i = minTemp - 1; i < minTemp; i++) {
+		htmlString = htmlString + "<td width='1%'>&nbsp;</td>";
+	}
+
+	for (var i = minTemp; i < maxTemp; i++) {
 		htmlString = htmlString
 				+ "<td width='1%' style='background-color: white'>&nbsp;</td>";
 	}
 
-	for (var i = data.temperatureMax; i < data.temperatureMax + 1; i++) {
+	for (var i = maxTemp; i < maxTemp + 1; i++) {
 		htmlString = htmlString + "<td width='1%'>&nbsp;</td>";
 	}
-	for (var i = data.temperatureMax + 1; i < data.temperatureMax + 2; i++) {
-		htmlString = htmlString + "<td width='1%'>" + data.temperatureMax.toFixed(0)
-				+ "<sup>o</sup>F</td>";
+	for (var i = maxTemp + 1; i < maxTemp + 2; i++) {
+		if (localStorage.getItem("tempUnit") == 'Celsius') {
+			htmlString = htmlString + "<td width='1%'>" + maxTemp.toFixed(0)
+					+ "<sup>o</sup>C</td>";
+		} else {
+			htmlString = htmlString + "<td width='1%'>" + maxTemp.toFixed(0)
+					+ "<sup>o</sup>F</td>";
+		}
+
 	}
-	for (var i = data.temperatureMax + 2; i < 100; i++) {
+	for (var i = maxTemp + 2; i < 100; i++) {
 		htmlString = htmlString + "<td width='1%'>&nbsp;</td>";
 	}
 	htmlString = htmlString + "</tr>";
@@ -389,18 +488,32 @@ function expandDay(span, tdId) {
 			}
 		});
 		var tdForDay = $('#' + tdId);
-		var htmlString = "<table style='background-color: rgb(30, 32, 43);border-radius: 1.25em' class='table-responsive' width = '100%'>"
-				+ "<tr><td align='center' style='font-weight: bold;font-size: large;'>"
-				+ dataOfDay.summary
-				+ "</td></tr>"
-				+ "<tr><td align='center'>"
-				+ dataOfDay.temperatureMin.toFixed(0)
-				+ "<sup>o</sup>F -> "
-				+ dataOfDay.temperatureMax.toFixed(0)
-				+ "<sup>o</sup>F </td></tr>"
-				+ "</table>";
-		var tableHead = $(htmlString);
-		tdForDay.append(tableHead);
+		if (localStorage.getItem("tempUnit") == 'Celsius') {
+			var htmlString = "<table style='background-color: rgb(30, 32, 43);border-radius: 1.25em' class='table-responsive' width = '100%'>"
+					+ "<tr><td align='center' style='font-weight: bold;font-size: large;'>"
+					+ dataOfDay.summary
+					+ "</td></tr>"
+					+ "<tr><td align='center'>"
+					+ convertTemperature(dataOfDay.temperatureMin, 'C').toFixed(0)
+					+ "<sup>o</sup>C -> "
+					+ convertTemperature(dataOfDay.temperatureMax, 'C').toFixed(0)
+					+ "<sup>o</sup>C </td></tr>" + "</table>";
+			var tableHead = $(htmlString);
+			tdForDay.append(tableHead);
+		} else {
+			var htmlString1 = "<table style='background-color: rgb(30, 32, 43);border-radius: 1.25em' class='table-responsive' width = '100%'>"
+					+ "<tr><td align='center' style='font-weight: bold;font-size: large;'>"
+					+ dataOfDay.summary
+					+ "</td></tr>"
+					+ "<tr><td align='center'>"
+					+ dataOfDay.temperatureMin.toFixed(0)
+					+ "<sup>o</sup>F -> "
+					+ dataOfDay.temperatureMax.toFixed(0)
+					+ "<sup>o</sup>F </td></tr>" + "</table>";
+			var tableHead1 = $(htmlString1);
+			tdForDay.append(tableHead1);
+		}
+
 	} else {
 		$(span).html('+');
 		tdForDay = $('#' + tdId);
@@ -418,3 +531,33 @@ function getDataOfDay(result, time) {
 		}
 	});
 }
+
+$('#btnChangeUnit').click(function() {
+	if (localStorage.getItem("tempUnit") != null) {
+		if (localStorage.getItem("tempUnit") == 'Fahrenheit') {
+			localStorage.setItem("tempUnit", 'Celsius');
+			$('#btnChangeUnit').val('Change Unit to Fahrenheit');
+		} else {
+			localStorage.setItem("tempUnit", 'Fahrenheit');
+			$('#btnChangeUnit').val('Change Unit to Celsius');
+		}
+		if ($.session.get("selectedCity") != null) {
+			var cityName = $.session.get("selectedCity");
+			var coordinates = $.session.get("selectedCityCoordinates");
+			var pts = coordinates.split(',');
+			var place = {
+				"placeName" : cityName,
+				"lattitude" : pts[0],
+				"longitude" : pts[1]
+			}
+			loadCurrentWeatherData(place);
+		} else {
+			var place = {
+				"placeName" : "College Station",
+				"lattitude" : "30.615011",
+				"longitude" : "-96.342476"
+			}
+			loadCurrentWeatherData(place);
+		}
+	}
+});
