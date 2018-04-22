@@ -129,7 +129,7 @@ function emojiClicked(imgId) {
 	if (imgId == 'imgAngry' || imgId == 'imgSad') {
 		toastr
 				.error(
-						'Feedback is submitted. We are sorry that we couldn\'t process your requests. We would like to serve your better.',
+						'Feedback is submitted. We are sorry that we couldn\'t process your requests. We would like to serve you better.',
 						'', {
 							closeButton : true,
 							progressBar : true,
@@ -138,7 +138,7 @@ function emojiClicked(imgId) {
 						});
 	} else if (imgId == 'imgNeutral') {
 		toastr.success(
-				'Feedback is submitted. We would like to serve your better.',
+				'Feedback is submitted. We would like to serve you better.',
 				'', {
 					closeButton : true,
 					progressBar : true,
