@@ -70,6 +70,11 @@ public class UserController extends BaseController {
 	public String spotReview() {
 		return "/user/spotreview";
 	}
+	
+	@RequestMapping("/faqs")
+	public String faqs() {
+		return "/guest/faqs";
+	}
 
 	/**
 	 * Redirect to logout.

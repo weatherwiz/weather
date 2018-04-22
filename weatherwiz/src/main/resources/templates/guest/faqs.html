@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0,maximum-scale=1" />
+<title>WeatherWiz</title>
+
+<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|"
+	rel="stylesheet" type="text/css" />
+<link href="/fonts/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/weatherwiz.css" />
+<link href="/css/toastr.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="site-content">
+		<div th:replace="guest/fragments/header :: header"></div>
+
+		<main class="main-content">
+		<div class="fullwidth-block" data-bg-color="#1e202B">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Frequently Asked Questions</h1>
+					</div>
+					<div class="col-md-12">
+						<hr />
+					</div>
+					<div class="col-md-12">
+						<h2>Home Page</h2>
+					</div>
+					<div class="col-md-12">
+						<h3>1. How accurate are your weather forecasts?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>We take forecasting very seriously at WeatherWiz and
+							strive to be as accurate as possible. Our team actively monitors
+							all of the available weather data and uses it to improve the
+							forecasts that we deliver to you.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>2. In what countries are you available?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>WeatherWiz is available in the almost all popular places
+							around the world, but we are actively working to expand our
+							coverage to include all cities. Stay tuned!</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>3. Where do you get your data?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>WeatherWiz uses a API from Google and darksky.net, which
+							are aggregated together statistically to provide the most
+							accurate forecast possible for a given location.</h4>
+					</div>
+					<div class="col-md-12">
+						<hr />
+					</div>
+					<div class="col-md-12">
+						<h2>Login Page</h2>
+					</div>
+					<div class="col-md-12">
+						<h3>1. Will you spam my email account now that I have signed
+							up?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>No, you will not be put on any mailing list or receive
+							any spam. If you use Facebook, we will not post on your wall,
+							ever! This authentication login is a simple and secure way for
+							you to save your preferences on WeatherWiz.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>2. Can I use my dog’s name as my password?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>Unless your dog’s name is
+							iyfwanbemrjhuamabvewyertqahcxoldjdf, NO. Strong passwords are in
+							fact passphrases that are at least 32 characters in length. Use
+							random phrases with or without special characters that you can
+							easily remember.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>3. Why should I login to access Saved Cities and Great
+							Escapes?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>Because good things never come easy! We use the account
+							you created to save your city preferences and provide you
+							relevant weather information.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>4. How can I trust you not to exploit my personal
+							details?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>We are not a client of Cambridge Analytica, nor do we let
+							Facebook access data held by us, so rest assured, your data is
+							safe in our hands. We use the strongest encryption techniques and
+							strict policies to protect your data from being misused.</h4>
+					</div>
+					<div class="col-md-12">
+						<hr />
+					</div>
+					<div class="col-md-12">
+						<h2>Great Escapes Page</h2>
+					</div>
+					<div class="col-md-12">
+						<h3>1. What are Great Escapes?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>Great Escapes are the best places to visit for the
+							season. These recommendations give you the places to explore with
+							activities ranging from hiking to beach parties.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>2. How are these places rated?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>We gather reviews from professional travellers to compile
+							a rating for the place out of 5 stars</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>3. Can you suggest popular places to visit in these
+							cities?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>The description for the listed cities do include a few
+							popular options. Bring out the traveller spirit in you and feel
+							free to explore new avenues.</h4>
+					</div>
+					<div class="col-md-12">
+						<hr />
+					</div>
+					<div class="col-md-12">
+						<h2>Saved Cities Page</h2>
+					</div>
+					<div class="col-md-12">
+						<h3>1. Do I need to Sign up / Log in to view the Saved Cities
+							Page?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>Yes, the user needs to create an account through the sign
+							up page and login with the credentials to access the Saved Cities
+							Page. If the user visits the website as a guest then the Saved
+							cities button on the Home page menu is disabled.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>2. How many cities can i add to my Saved Cities Page?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>A user who has signed up for the website can add up to
+							six cities to the Saved Cities page. If the user has less than
+							six cities added to the Saved Cities page, a tile with a plus
+							sign will be available to add a new city.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>3. Can I add cities from all over the world to my Saved
+							Cities Page?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>A user is allowed to add any city from all over the world
+							without any restriction on user’s current location and country.
+							The user can click on the plus tile and search for any city from
+							all over the globe to be saved.</h4>
+					</div>
+					<div class="col-md-12">
+						<hr />
+					</div>
+					<div class="col-md-12">
+						<h2>My Account Page</h2>
+					</div>
+					<div class="col-md-12">
+						<h3>1. What information is saved in the User Profile of My
+							Account Page?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>The website stores the basic information about a
+							registered user which includes the name of a user in addition to
+							email address and mobile number. The website also stores the user
+							password and any of this information can be updated by the user
+							at any time.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>2. How can I update my information on the My Account
+							Page?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>The user needs to login using the credentials to visit
+							the User Profile section of My Account Page where the user has an
+							option of updating name, phone number, email address and
+							password. As soon as the user clicks on Save button, all the new
+							details are saved.</h4>
+					</div>
+					<div class="col-md-12">
+						<h3>3. Will my mobile number will be stored only in
+							WeatherWiz database or it can be shared with any other third
+							party organization?</h3>
+					</div>
+					<div class="col-md-12">
+						<h4>The mobile number of the user is only stored in the
+							WeatherWiz database for the future use case of sending out mobile
+							notifications. WeatherWiz does not share any personal information
+							of a user including phone numbers with any third party. Hence,
+							the data of user is secure and safe.</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		</main>
+
+		<div th:replace="user/fragments/footer :: footer"></div>
+		<!-- .site-footer -->
+	</div>
+
+	<script type="text/javascript" src="/inbuiltJS/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/inbuiltJS/moment.js"></script>
+	<script type="text/javascript" src="/inbuiltJS/jquerysession.js"></script>
+	<script type="text/javascript" src="/inbuiltJS/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/inbuiltJS/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="/inbuiltJS/toastr.min.js"></script>
+	<script type="text/javascript" src="/inbuiltJS/plugins.js"></script>
+	<script type="text/javascript" src="/inbuiltJS/app.js"></script>
+	<script type="text/javascript" src="/customJS/common.js"></script>
+	<script type="text/javascript" src="/customJS/login.js"></script>
+</body>
+
+</html>
