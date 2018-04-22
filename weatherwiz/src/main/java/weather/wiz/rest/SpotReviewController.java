@@ -1,5 +1,7 @@
 package weather.wiz.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +20,10 @@ public class SpotReviewController {
 	@RequestMapping(method = RequestMethod.POST, value = "/spotreview/save")
 	public void saveUser(@RequestBody SpotReview spotReview) {
 		service.saveSpotReview(spotReview);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/spotreview/all")
+	public List<SpotReview> getAllSpotReviews() {
+		return service.getAllSpotReviews();
 	}
 }

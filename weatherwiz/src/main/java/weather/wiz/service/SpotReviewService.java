@@ -1,5 +1,7 @@
 package weather.wiz.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,9 @@ public class SpotReviewService {
 
 	public void saveSpotReview(SpotReview spotReview) {
 		repository.save(spotReview);
+	}
+	
+	public List<SpotReview> getAllSpotReviews() {
+		return repository.findAll();
 	}
 }

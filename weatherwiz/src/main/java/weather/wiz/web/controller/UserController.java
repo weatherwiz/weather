@@ -75,6 +75,11 @@ public class UserController extends BaseController {
 	public String faqs() {
 		return "/guest/faqs";
 	}
+	
+	@RequestMapping("/allreviews")
+	public String allReviews() {
+		return "/guest/allreviews";
+	}
 
 	/**
 	 * Redirect to logout.
