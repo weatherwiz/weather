@@ -42,8 +42,8 @@ $(document).ready(function() {
 				}
 				//htmlString = htmlString + " (" + result[i].rating + " star / 5)"; 
 				htmlString = htmlString + "</h2></div><div class='col-md-12'><h3>City: " + result[i].city +
-				"</h3></div><div class='col-md-12'><h4>\"" + result[i].reviewComment +
-				"\"</h4></div>";
+				"</h3></div><div class='col-md-12 post entry-title'><p>\"" + result[i].reviewComment +
+				"\"</p></div>";
 				var reviewContent = $(htmlString);
 				div.append(reviewContent);
 			}
