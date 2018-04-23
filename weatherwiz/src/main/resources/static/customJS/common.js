@@ -125,6 +125,17 @@ function convertTemperature(tempValue, targetUnit) {
 	}
 }
 
+function subscribe()
+{
+		toastr.success(
+				'Thank you for subscribing!',
+				'', {
+					closeButton : true,
+					progressBar : true,
+					positionClass : "toast-top-center",
+					timeOut : "5000",
+				});
+
 function emojiClicked(imgId) {
 	if (imgId == 'imgAngry' || imgId == 'imgSad') {
 		toastr
