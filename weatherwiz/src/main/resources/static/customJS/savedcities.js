@@ -180,7 +180,7 @@ function addCityToFavorite(place) {
 		data : JSON.stringify(city),
 		contentType : "application/json; charset=utf-8",
 		success : function(result) {
-			toastr.success('City is added to your favorites.', '', {
+			toastr.success('City is added to your favorites.Please refresh the page to view it', '', {
 				closeButton : true,
 				progressBar : true,
 				positionClass : "toast-top-center",
