@@ -14,4 +14,7 @@ public interface SavedCityRepository extends JpaRepository<SavedCity, Long> {
 	
 	@Query("from SavedCity c where c.userId = :userId")
 	List<SavedCity> findByUserId(@Param("userId") Long userId);
+	
+	@Query("from SavedCity c where c.userId = :userId AND c.cityId = :cityId")
+	List<SavedCity> findByCityAndUserId(@Param("userId") Long userId, @Param("cityId") Long cityId);
 }
