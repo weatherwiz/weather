@@ -156,3 +156,14 @@ function emojiClicked(imgId) {
 		});
 	}
 }
+
+$('#btnSubscribe').click(function() {
+	toastr.success(
+			'Thank you for subscribing. Let\'s keep in touch!',
+			'', {
+				closeButton : true,
+				progressBar : true,
+				positionClass : "toast-top-center",
+				timeOut : "5000",
+			});
+});
