@@ -985,9 +985,9 @@ form textarea {
 	}
 	
 @media (max-width: 480px) {
-    .table-responsive.weeklyforecasthide
+    .weeklyforecasthide
 	{
-		display:none;
+		display:none !important;
 	}
 }	
 @media (max-width: 767px) {
