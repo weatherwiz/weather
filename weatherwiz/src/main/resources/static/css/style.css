@@ -981,6 +981,14 @@ form textarea {
   th.visible-xs,
   td.visible-xs {
     display: table-cell !important; } }
+	
+	}
+	
+@media (max-width: 460px) {
+		.mobile 
+		{
+			display:none;
+		}
 @media (max-width: 767px) {
   .visible-xs-block {
     display: block !important; } }
