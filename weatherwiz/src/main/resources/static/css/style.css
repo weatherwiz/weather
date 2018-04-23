@@ -984,12 +984,7 @@ form textarea {
 	
 	}
 	
-@media (max-width: 480px) {
-    .weeklyforecasthide
-	{
-		display:none !important;
-	}
-}	
+
 @media (max-width: 767px) {
   .visible-xs-block {
     display: block !important; } }
