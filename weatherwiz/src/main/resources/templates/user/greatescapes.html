@@ -17,162 +17,134 @@
 	type="text/css" />
 <link rel="stylesheet" href="/css/style.css" />
 </head>
-<body background ="#1e202b">
+<body background="#1e202b">
 	<div class="site-content">
 		<div th:replace="user/fragments/header :: header"></div>
 		<div th:replace="guest/fragments/header :: header"></div>
 
-		<!-- <main class="main-content">
+		<main class="main-content">
 		<div class="fullwidth-block">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-1.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">New York</h3>
-							<small class="date">8 oct, 8:00AM</small>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-2.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">Los Angeles</h3>
-							<small class="date">8 oct, 8:00AM</small>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-3.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">Chicago</h3>
-							<small class="date">8 oct, 8:00AM</small>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-4.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">London</h3>
-							<small class="date">8 oct, 8:00AM</small>
-						</div>
+					<div class="col-md-12">
+						<h2 class="section-title-home-page">Like to help out a fellow
+							traveler? Click on any of the pictures below to leave a
+							testimonial!</h2>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-5.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">New York</h3>
-							<small class="date">8 oct, 8:00AM</small>
+					<div class="col-md-6">
+						<div class="photo" background="#323544">
+							<a th:href="@{/user/spotreview}"><div
+									class="photo-preview photo-detail"
+									data-bg-image="/img/photo-1.jpg"></div></a>
+							<div class="photo-details">
+								<h3 class="photo-title">
+									<a href="#">Austin</a>
+								</h3>
+								<p>Austin is known for its eclectic live-music scene
+									centered around country, blues and rock. Its many parks and
+									lakes are popular for hiking, biking, swimming and boating.</p>
+								<div class="star-rating" title="Rated 2 out of 5">
+									<span style="width: 65%"><strong class="rating">1</strong>
+										out of 5</span>
+								</div>
+							</div>
+						</div>
+						<div class="photo" background="#323544">
+							<a th:href="@{/user/spotreview}"><div
+									class="photo-preview photo-detail"
+									data-bg-image="/img/photo-2.jpg"></div></a>
+							<div class="photo-details">
+								<h3 class="photo-title">
+									<a href="#">Big Bend National Park</a>
+								</h3>
+								<p>Big Bend is known as one of the outstanding places in
+									North America for star gazing, in fact, it has the least light
+									pollution of any other National Park unit in the lower 48
+									states.</p>
+								<div class="star-rating" title="Rated 1 out of 5">
+									<span style="width: 70%"><strong class="rating">1</strong>
+										out of 5</span>
+								</div>
+							</div>
+						</div>
+						<div class="photo" background="#323544">
+							<a th:href="@{/user/spotreview}"><div
+									class="photo-preview photo-detail"
+									data-bg-image="/img/photo-3.jpg"></div></a>
+							<div class="photo-details">
+								<h3 class="photo-title">
+									<a href="#">South Padre Island</a>
+								</h3>
+								<p>Once a year South Padre Island becomes the official
+									island of Spring Break. The party never sleeps, stops, or slows
+									down. There’s no place like it.</p>
+								<div class="star-rating" title="Rated 1 out of 5">
+									<span style="width: 60%"><strong class="rating">1</strong>
+										out of 5</span>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-6.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">Los Angeles</h3>
-							<small class="date">8 oct, 8:00AM</small>
+					<div class="col-md-6">
+						<div class="photo" background="#323544">
+							<a th:href="@{/user/spotreview}"><div
+									class="photo-preview photo-detail"
+									data-bg-image="/img/photo-6.jpg"></div></a>
+							<div class="photo-details">
+								<h3 class="photo-title">
+									<a href="#">Corpus Christi</a>
+								</h3>
+								<p>Corpus Christi is a Texas city on the Gulf of Mexico.
+									It’s tucked into a bay and its beaches are sheltered by Padre
+									and Mustang islands. It's home to war museum USS Lexington.</p>
+								<div class="star-rating" title="Rated 1 out of 5">
+									<span style="width: 40%"><strong class="rating">1</strong>
+										out of 5</span>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-7.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">Chicago</h3>
-							<small class="date">8 oct, 8:00AM</small>
+						<div class="photo" background="#323544">
+							<a th:href="@{/user/spotreview}"><div
+									class="photo-preview photo-detail"
+									data-bg-image="/img/photo-7.jpg"></div></a>
+							<div class="photo-details">
+								<h3 class="photo-title">
+									<a href="#">San Antonio</a>
+								</h3>
+								<p>San Antonio is a rich colonial heritage. Following the
+									San Antonio River, the miles-long River Walk is a landmark
+									pedestrian promenade lined with cafes and shops.</p>
+								<div class="star-rating" title="Rated 1 out of 5">
+									<span style="width: 60%"><strong class="rating">2</strong>
+										out of 5</span>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="live-camera">
-							<figure class="live-camera-cover">
-								<a th:href="@{/user/spotreview}"><img src="/img/live-camera-8.jpg" alt=""></a>
-							</figure>
-							<h3 class="location">London</h3>
-							<small class="date">8 oct, 8:00AM</small>
+						<div class="photo" background="#323544">
+							<a th:href="@{/user/spotreview}"><div
+									class="photo-preview photo-detail"
+									data-bg-image="/img/photo-8.jpg"></div></a>
+							<div class="photo-details">
+								<h3 class="photo-title">
+									<a href="#">Guadalupe National Park</a>
+								</h3>
+								<p>Guadalupe mountains national park is known for its
+									bright-white Salt Basin Dunes, wildlife-rich grassland and
+									fossilized reef mountains.</p>
+								<div class="star-rating" title="Rated 1 out of 5">
+									<span style="width: 50%"><strong class="rating">1</strong>
+										out of 5</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</main> -->
-		
-		<main class="main-content">
-				<div class="container">
-					<div class="breadcrumb" background="#323544">
-						<a href="index.html">Home</a>
-						<span>Great Escapes</span>
-					</div>
-				</div>
 
-				<div class="fullwidth-block">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="photo" background="#323544">
-									<a th:href="@{/user/spotreview}"><div class="photo-preview photo-detail" data-bg-image="/img/photo-1.jpg"></div></a>
-									<div class="photo-details">
-										<h3 class="photo-title"><a href="#">Austin</a></h3>
-										<p> Austin is known for its eclectic live-music scene centered around country, blues and rock. Its many parks and lakes are popular for hiking, biking, swimming and boating.</p>
-										<div class="star-rating" title="Rated 2 out of 5"><span style="width:65%"><strong class="rating">1</strong> out of 5</span></div>
-									</div>
-								</div>
-								<div class="photo" background="#323544">
-									<a th:href="@{/user/spotreview}"><div class="photo-preview photo-detail" data-bg-image="/img/photo-2.jpg"></div></a>
-									<div class="photo-details">
-										<h3 class="photo-title"><a href="#">Big Bend National Park</a></h3>
-										<p>Big Bend is known as one of the outstanding places in North America for star gazing, in fact, it has the least light pollution of any other National Park unit in the lower 48 states.</p>
-										<div class="star-rating" title="Rated 1 out of 5"><span style="width:70%"><strong class="rating">1</strong> out of 5</span></div>
-									</div>
-								</div>
-								<div class="photo" background="#323544">
-									<a th:href="@{/user/spotreview}"><div class="photo-preview photo-detail" data-bg-image="/img/photo-3.jpg"></div></a>
-									<div class="photo-details">
-										<h3 class="photo-title"><a href="#">South Padre Island</a></h3>
-										<p>Once a year South Padre Island becomes the official island of Spring Break. The party never sleeps, stops, or slows down. There’s no place like it.</p>
-										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">1</strong> out of 5</span></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="photo" background="#323544">
-									<a th:href="@{/user/spotreview}"><div class="photo-preview photo-detail" data-bg-image="/img/photo-6.jpg"></div></a>
-									<div class="photo-details">
-										<h3 class="photo-title"><a href="#">Corpus Christi</a></h3>
-										<p>Corpus Christi is a Texas city on the Gulf of Mexico. It’s tucked into a bay and its beaches are sheltered by Padre and Mustang islands. It's home to war museum USS Lexington.</p>
-										<div class="star-rating" title="Rated 1 out of 5"><span style="width:40%"><strong class="rating">1</strong> out of 5</span></div>
-									</div>
-								</div>
-								<div class="photo" background="#323544">
-									<a th:href="@{/user/spotreview}"><div class="photo-preview photo-detail" data-bg-image="/img/photo-7.jpg"></div></a>
-									<div class="photo-details">
-										<h3 class="photo-title"><a href="#">San Antonio</a></h3>
-										<p>San Antonio is a rich colonial heritage. Following the San Antonio River, the miles-long River Walk is a landmark pedestrian promenade lined with cafes and shops. </p>
-										<div class="star-rating" title="Rated 1 out of 5"><span style="width:60%"><strong class="rating">2</strong> out of 5</span></div>
-									</div>
-								</div>
-								<div class="photo" background="#323544">
-									<a th:href="@{/user/spotreview}"><div class="photo-preview photo-detail" data-bg-image="/img/photo-8.jpg"></div></a>
-									<div class="photo-details">
-										<h3 class="photo-title"><a href="#">Guadalupe National Park</a></h3>
-										<p>Guadalupe mountains national park is known for its bright-white Salt Basin Dunes, wildlife-rich grassland and fossilized reef mountains. </p>
-										<div class="star-rating" title="Rated 1 out of 5"><span style="width:50%"><strong class="rating">1</strong> out of 5</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</main>
+		</main>
 		<!-- .main-content -->
 
 		<div th:replace="user/fragments/footer :: footer"></div>
