@@ -28,16 +28,13 @@
 			<div class="container" align="center">
 				<form action="#" class="contact-form">
 					<div class="row" align="center">
-						<div class="col-md-4">
-							&nbsp;
-						</div>
+						<div class="col-md-4">&nbsp;</div>
 						<div class="col-md-3">
-							<input type="button" id="btnChangeUnit" value="Change Unit to Celsius"
+							<input type="button" id="btnChangeUnit"
+								value="Change Unit to Celsius"
 								style="background-color: #009ad8;">
 						</div>
-						<div class="col-md-4">
-							&nbsp;
-						</div>
+						<div class="col-md-4">&nbsp;</div>
 					</div>
 				</form>
 				<form action="#" class="find-location">
@@ -360,33 +357,39 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
-						<h4 class="section-title-home-page" align="center">Stay Informed Of The Weather In Saved Cities</h4>
+						<h4 class="section-title-home-page" align="center">Stay
+							Informed Of The Weather In Saved Cities</h4>
 						<div class="photo-grid">
-							<a href="#"><img src="/img/photo-1.jpg" alt="#"
-								class="img-responsive"></a> <a href="#"><img
-								src="/img/photo-2.jpg" alt="#" class="img-responsive"></a> <a
-								href="#"><img src="/img/photo-3.jpg" alt="#"
-								class="img-responsive"></a> <a href="#"><img
-								src="/img/photo-4.jpg" alt="#" class="img-responsive"></a> <a
-								href="#"><img src="/img/photo-5.jpg" alt="#"
-								class="img-responsive"></a> <a href="#"><img
-								src="/img/photo-6.jpg" alt="#" class="img-responsive"></a>
+							<a th:href="@{/user/savedcities}"><img src="/img/photo-1.jpg"
+								alt="#" class="img-responsive"></a> <a
+								th:href="@{/user/savedcities}"><img src="/img/photo-2.jpg"
+								alt="#" class="img-responsive"></a> <a
+								th:href="@{/user/savedcities}"><img src="/img/photo-3.jpg"
+								alt="#" class="img-responsive"></a> <a
+								th:href="@{/user/savedcities}"><img src="/img/photo-4.jpg"
+								alt="#" class="img-responsive"></a> <a
+								th:href="@{/user/savedcities}"><img src="/img/photo-5.jpg"
+								alt="#" class="img-responsive"></a> <a
+								th:href="@{/user/savedcities}"><img src="/img/photo-6.jpg"
+								alt="#" class="img-responsive"></a>
 
 						</div>
 					</div>
 					<div class="col-md-3">
-						<h4 class="section-title-home-page" align="center">
-							Get Some Great Places To Escape This Season<br />
-						</h4>
-						<div class="home-page-section" margin-top="5%">
-							<figure class="home-page-section-cover">
-								<img src="/img/great_escapes.jpg" alt="" class="img-responsive">
-							</figure>
-						</div>
+						<a th:href="@{/greatescapes}">
+							<h4 class="section-title-home-page" align="center">
+								Get Some Great Places To Escape This Season<br />
+							</h4>
+							<div class="home-page-section" margin-top="5%">
+								<figure class="home-page-section-cover">
+									<img src="/img/great_escapes.jpg" alt="" class="img-responsive">
+								</figure>
+							</div>
+						</a>
 					</div>
 					<div class="col-md-3">
-						<h4 class="section-title-home-page" align="center">WeatherWiz Wants To
-							Know Your Mood Today!</h4>
+						<h4 class="section-title-home-page" align="center">WeatherWiz
+							Wants To Know Your Mood Today!</h4>
 						<!-- 	<div top-margin = "5%"> -->
 						<div class="home-page-section">
 							<table width="100%" class="table-responsive">
@@ -395,19 +398,19 @@
 										the emoji that best expresses how you feel right now.</td>
 								</tr>
 								<tr align="center">
-									<td width="20%"><img id="imgAngry"
+									<td width="20%"><img id="imgAngry" style="cursor: pointer;"
 										onclick="emojiClicked('imgAngry')" class="img-responsive"
 										src="/img/angry.png" width="40px"></td>
-									<td width="20%"><img id="imgSad"
+									<td width="20%"><img id="imgSad" style="cursor: pointer;"
 										onclick="emojiClicked('imgSad')" class="img-responsive"
 										src="/img/sad.png" width="40px"></td>
-									<td width="20%"><img id="imgNeutral"
+									<td width="20%"><img id="imgNeutral" style="cursor: pointer;"
 										onclick="emojiClicked('imgNeutral')" class="img-responsive"
 										src="/img/neutral.png" width="40px"></td>
-									<td width="20%"><img id="imgSatisfied"
+									<td width="20%"><img id="imgSatisfied" style="cursor: pointer;"
 										onclick="emojiClicked('imgSatisfied')" class="img-responsive"
 										src="/img/satisfied.png" width="48px"></td>
-									<td width="20%"><img id="imgHappy"
+									<td width="20%"><img id="imgHappy" style="cursor: pointer;"
 										onclick="emojiClicked('imgHappy')" class="img-responsive"
 										src="/img/happy.png" width="40px"></td>
 								</tr>
@@ -420,7 +423,8 @@
 						</h4>
 						<div class="home-page-section" margin-top="5%">
 							<figure class="home-page-section-cover">
-								<a th:href="@{/faqs}"><img src="/img/Merlin.png" alt="" class="img-responsive"></a>
+								<a th:href="@{/faqs}"><img src="/img/Merlin.png" alt=""
+									class="img-responsive"></a>
 							</figure>
 						</div>
 					</div>

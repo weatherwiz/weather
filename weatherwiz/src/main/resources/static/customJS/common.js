@@ -25,6 +25,7 @@ function setUserHeader() {
 	$('#ulGuestMenu #lnkGuestSavedCities').remove();
 	$('#ulGuestMenu #lnkGuestGreatEscapes').remove();
 	$('#ulGuestMenu #lnkGuestLogin').remove();
+	$('#ulGuestMenu #lnkGuestAllReviews').remove();
 }
 
 function setGuestHeader() {
@@ -34,6 +35,7 @@ function setGuestHeader() {
 	$('#ulUserMenu #lnkUserGreatEscapes').remove();
 	$('#ulUserMenu #lnkUserMyAccount').remove();
 	$('#ulUserMenu #lnkUserLogin').remove();
+	$('#ulUserMenu #lnkUserAllReviews').remove();
 }
 
 function validateEmailID(emailID) {

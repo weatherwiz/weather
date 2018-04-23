@@ -44,8 +44,10 @@
 												id="txtLocationToBeSearched" onpaste="this.onchange();"
 												oninput="this.onchange();" type="text"
 												placeholder="Find your location..." class="ui-widget" /></td>
-											<td><!-- <input type="button" id="btnFind" value="Find"
-												style="background-color: #009ad8;"> --></td>
+											<td>
+												<!-- <input type="button" id="btnFind" value="Find"
+												style="background-color: #009ad8;"> -->
+											</td>
 										</tr>
 									</table>
 								</div>
@@ -77,10 +79,27 @@
 				</div>
 				<div class="row">
 					<table width="100%" class="table-responsive"
-						onclick="citySelected()">
+						onclick="citySelected()" style="cursor: pointer;">
 						<tr id="trSavedCities"></tr>
 					</table>
 				</div>
+				<!-- <div class="row">
+					<div class="col-md-4" id="row1">
+						<table width="100%" class="table-responsive">
+							<tr id="trSavedCities1"></tr>
+						</table>
+					</div>
+					<div class="col-md-4"  id="row2">
+						<table width="100%" class="table-responsive">
+							<tr id="trSavedCities2"></tr>
+						</table>
+					</div>
+					<div class="col-md-4" id="row3">
+						<table width="100%" class="table-responsive">
+							<tr id="trSavedCities3"></tr>
+						</table>
+					</div>
+				</div> -->
 			</div>
 		</div>
 
@@ -88,22 +107,26 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<h2 class="section-title" align="center">Ask Merlin the Wizard!</h2>
+						<h2 class="section-title" align="center">Ask Merlin the
+							Wizard!</h2>
 						<div class="home-page-section" margin-top="5%">
 							<figure class="home-page-section-cover">
-								<a th:href="@{/faqs}"><img src="/img/Merlin.png" alt="" class="img-responsive"></a>
+								<a th:href="@{/faqs}"><img src="/img/Merlin.png" alt=""
+									class="img-responsive"></a>
 							</figure>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<h2 class="section-title" align="center">
-							Get Some Great Places To escape this season<br />
-						</h2>
-						<div class="home-page-section" margin-top="5%">
-							<figure class="home-page-section-cover">
-								<img src="/img/great_escapes.jpg" alt="" class="img-responsive">
-							</figure>
-						</div>
+						<a th:href="@{/greatescapes}">
+							<h2 class="section-title" align="center">
+								Get Some Great Places To escape this season<br />
+							</h2>
+							<div class="home-page-section" margin-top="5%">
+								<figure class="home-page-section-cover">
+									<img src="/img/great_escapes.jpg" alt="" class="img-responsive">
+								</figure>
+							</div>
+						</a>
 					</div>
 					<div class="col-md-4">
 						<h2 class="section-title" align="center">WeatherWiz Wants To
@@ -116,19 +139,19 @@
 										the emoji that best expresses how you feel right now.</td>
 								</tr>
 								<tr align="center">
-									<td width="20%"><img id="imgAngry"
+									<td width="20%"><img id="imgAngry" style="cursor: pointer;"
 										onclick="emojiClicked('imgAngry')" class="img-responsive"
 										src="/img/angry.png" width="40px"></td>
-									<td width="20%"><img id="imgSad"
+									<td width="20%"><img id="imgSad" style="cursor: pointer;"
 										onclick="emojiClicked('imgSad')" class="img-responsive"
 										src="/img/sad.png" width="40px"></td>
-									<td width="20%"><img id="imgNeutral"
+									<td width="20%"><img id="imgNeutral" style="cursor: pointer;"
 										onclick="emojiClicked('imgNeutral')" class="img-responsive"
 										src="/img/neutral.png" width="40px"></td>
-									<td width="20%"><img id="imgSatisfied"
+									<td width="20%"><img id="imgSatisfied" style="cursor: pointer;"
 										onclick="emojiClicked('imgSatisfied')" class="img-responsive"
 										src="/img/satisfied.png" width="48px"></td>
-									<td width="20%"><img id="imgHappy"
+									<td width="20%"><img id="imgHappy" style="cursor: pointer;"
 										onclick="emojiClicked('imgHappy')" class="img-responsive"
 										src="/img/happy.png" width="40px"></td>
 								</tr>
