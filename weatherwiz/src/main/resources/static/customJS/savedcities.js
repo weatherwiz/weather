@@ -86,7 +86,7 @@ function populateCityData(city, index) {
 				+ cityDetails
 				+ "' class='table-responsive' onclick='citySelected(this)' style='border-radius: 1em;background-color: #1e202b' width='100%'><tr><td style='padding-top:10px'><h3 class='photo-title' align='center'>"
 				+ city.cityName
-				+ "</h3></td><td style='padding-top:10px' align='right'><img src='/img/delete.png' width='32px'></td></tr>";
+				+ "</h3></td><td style='padding-top:10px' align='right'><img style='cursor: pointer;' onclick='deleteCity(this)' title='"+city.cityId+"' src='/img/delete.png' width='32px'></td></tr>";
 	}
 
 	$
@@ -112,6 +112,32 @@ function populateCityData(city, index) {
 
 				},
 			});
+}
+
+function deleteCity(img){
+	var cityId = $(img).attr('title');
+	$.ajax({
+		url : "/city/delete",
+		type : "POST",
+		data : cityId,
+		contentType : "application/text; charset=utf-8",
+		success : function(result) {
+			toastr.success('City is deleted from your favorites. Please refresh your page.', '', {
+				closeButton : true,
+				progressBar : true,
+				positionClass : "toast-top-center",
+				timeOut : "5000",
+			});
+		},
+		error : function(e) {
+			toastr.error('City is not found', '', {
+				closeButton : true,
+				progressBar : true,
+				positionClass : "toast-top-center",
+				timeOut : "2000",
+			});
+		}
+	});
 }
 
 function citySelected(tbl) {
@@ -186,8 +212,6 @@ function addCityToFavorite(place) {
 				positionClass : "toast-top-center",
 				timeOut : "5000",
 			});
-			//populateCitiesData();
-			//getSavedCities();
 		},
 		error : function(e) {
 			toastr.error('City is not found', '', {

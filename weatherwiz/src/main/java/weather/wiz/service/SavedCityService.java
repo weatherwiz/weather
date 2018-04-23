@@ -47,4 +47,16 @@ public class SavedCityService {
 	public Place getPlaceDetails(String placeName){
 		return placeRepo.findFirstByPlaceNameOrderByPlaceName(placeName);
 	}
+	
+	public void deleteCity(long cityId, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		ApplicationUser currentUser = null;
+		if (session.getAttribute(WeatherWizConstant.APPLICATION_USER.name()) != null) {
+			currentUser = (ApplicationUser) session.getAttribute(WeatherWizConstant.APPLICATION_USER.name());
+			List<SavedCity> userCities = repository.findByCityAndUserId(currentUser.getUserId(), cityId);
+			for (SavedCity savedCity : userCities) {
+				repository.delete(savedCity.getCityId());
+			}
+		}
+	}
 }
